@@ -1,0 +1,29 @@
+a {
+  width: 111px;
+  height: 24px;
+  font-family: "Montserrat", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.015em;
+  text-decoration-line: underline;
+  color: rgba(0, 0, 0, 0.5);
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  &.button {
+    display: inline-block;
+    background: rgba(24, 160, 251, 0.1);
+    color: #18a0fb;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    font-weight: 100;
+    border-style: solid;
+    border-color: rgba(24, 160, 251, 0.5);
+  }
+}
