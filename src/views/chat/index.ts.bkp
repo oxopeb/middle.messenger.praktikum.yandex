@@ -1,0 +1,134 @@
+import Block from '/src/modules/block'
+import { template } from './template'
+import './style.css'
+//import { props as chatProps } from './props'
+import Button from "/src/components/button"
+import Input from "/src/components/input"
+import Buddy from "/src/components/buddy"
+
+
+class Chat extends Block {
+    constructor(props) {
+
+        super(props, 'div')
+    }
+    render() {
+        return this.compile(template, this.props);
+
+    }
+}
+
+type BuddyProps = {
+    buddyName:string
+    msgBuddy:string
+    msgTime:string
+    msgCount:string
+    settings:object
+    events?:object
+  }
+type ButtonProps = {
+    name:string
+    title:string
+    link:string
+    classes:string
+    settings:object
+    events?:object
+  }
+
+export default () => {
+    
+    const chatprops:object = {
+        buddy1: new Buddy({
+            buddyName: 'Андрей Анисимов',
+            msgBuddy: 'Приве, друг',
+            msgTime: '10:05',
+            msgCount: '3',
+            settings: { withInternalID: true }
+        } as BuddyProps),        
+        buddy2: new Buddy({
+            buddyName: 'Андрей Анисимов',
+            msgBuddy: 'Приве, друг',
+            msgTime: '10:05',
+            msgCount: '3',
+            settings: { withInternalID: true }
+        }as BuddyProps),       
+        buddy3: new Buddy({
+            buddyName: 'Андрей Анисимов',
+            msgBuddy: 'Приве, друг',
+            msgTime: '10:05',
+            msgCount: '1',
+            settings: { withInternalID: true }
+        }as BuddyProps),       
+        buddy4: new Buddy({
+            buddyName: 'Андрей Анисимов',
+            msgBuddy: 'Приве, друг',
+            msgTime: '10:05',
+            msgCount: '3',
+            settings: { withInternalID: true }
+        }as BuddyProps),       
+        buddy5: new Buddy({
+            buddyName: 'Андрей Анисимов',
+            msgBuddy: 'Приве, друг',
+            msgTime: '10:05',
+            msgCount: '3',
+            settings: { withInternalID: true }
+        }as BuddyProps),       
+        buddy6: new Buddy({
+            buddyName: 'Андрей Анисимов',
+            msgBuddy: 'Приве, друг',
+            msgTime: '10:05',
+            msgCount: '3',
+            settings: { withInternalID: true }
+        }as BuddyProps),       
+        buddy7: new Buddy({
+            buddyName: 'Андрей Анисимов',
+            msgBuddy: 'Приве, друг',
+            msgTime: '10:05',
+            msgCount: '3',
+            settings: { withInternalID: true }
+        }as BuddyProps),           
+        buddy8: new Buddy({
+            buddyName: 'Андрей Анисимов',
+            msgBuddy: 'Приве, друг',
+            msgTime: '10:05',
+            msgCount: '3',
+            settings: { withInternalID: true }
+        }as BuddyProps),       
+        buddy9: new Buddy({
+            buddyName: 'Андрей Анисимов',
+            msgBuddy: 'Приве, друг',
+            msgTime: '10:05',
+            msgCount: '3',
+            settings: { withInternalID: true }
+        }as BuddyProps),       
+        buddy10: new Buddy({
+            buddyName: 'Андрей Анисимов',
+            msgBuddy: 'Приве, друг',
+            msgTime: '10:05',
+            msgCount: '3',
+            settings: { withInternalID: true }
+        }as BuddyProps), 
+        inputPassword: new Input({
+            name: 'password',
+            title: 'Password',
+            settings: { withInternalID: true }
+        }as InputProps),
+        buttonUser: new Button({
+            name: 'user',
+            title: 'Profile',
+            link: '/?page=user',
+            class: 'link profile',
+            settings: { withInternalID: true }
+        } as ButtonProps),      
+        buttonSend: new Button({
+            name: 'send',
+            title: 'Send',
+            link: '#send',
+            class: 'button send',
+            settings: { withInternalID: true }
+        } as ButtonProps),
+    }
+
+    const page = new Chat(chatProps)
+    return page
+}

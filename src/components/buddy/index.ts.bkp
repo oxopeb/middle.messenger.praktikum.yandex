@@ -1,0 +1,24 @@
+import Block from '/src/modules/block'
+import { template } from './template'
+//import './style.scss'
+
+type BuddyProps = {
+    buddyName:string
+    msgBuddy:string
+    msgTime:string
+    msgCount:string
+    classes?:string
+    settings:object
+    events?:object
+  }
+
+export class Buddy extends Block {
+    constructor({buddyName,msgBuddy,msgTime,msgCount,settings,events}:ButtonProps) {
+        classes?classes="userchat":classes+=" userchat"
+        super({...props,classes}, 'div')
+    }
+    render () {
+        return this.compile(template, this.props)
+    }
+}
+

@@ -1,11 +1,12 @@
-export default function getQueryVariable(variable) {
+export default function getQueryVariable(varToFindInURL) {
     const query = window.location.search.substring(1);
-    const vars = query.split("&");
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split("=");
-        if (pair[0] == variable) { 
-            return pair[1]; 
+    const blocks = query.split("&");
+    let valueReceived = 'base';
+    blocks.forEach (block => {
+        const pair = block.split("=");
+        if (pair[0] === varToFindInURL) { 
+            valueReceived = pair[1]; 
         }
-    }
-    return ('base');
+    });
+    return valueReceived;
 }

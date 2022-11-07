@@ -1,11 +1,17 @@
-import Handlebars from 'handlebars'
-import fs from 'fs'
-const tpl = fs.readFileSync(__dirname + '/index.hbs', 'utf8')
-// import tpl from 'bundle-text:./index.hbs'
+import { default as Block } from '/src/modules/block'
+import { template } from './template'
 import './style.scss'
 
-Handlebars.registerPartial('buttonComponent', tpl)
 
-export default (props = {}) => {
-    return Handlebars.compile(tpl)({props})
+
+class Button extends Block {
+    constructor(props) {
+
+        super(props, 'div')
+    }
+    render(){
+        return this.compile(template, this.props)
+    }
 }
+
+export default Button

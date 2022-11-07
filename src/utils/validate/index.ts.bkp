@@ -1,0 +1,32 @@
+export function validate (event:object, element:string){
+   function res (checkResult:string):() => string {
+      return { info:checkResult }
+   }
+   const value:string = event.target.value
+   switch(element){
+      case "first_name": 
+      case "second_name": 
+      !value.match(/^[A-ZА-Я]/g)?res('С заглавной буквы!'):
+      (value.match(/\d+/g)?res('Нет цифр'):
+      (value.match(/\s/g)?res('Не нужно пробелов'):
+      (value.match(/^[a-zA-ZА-Яа-я0-9-]{0,}$/g)?res('Не нужно спец.символов'):res(''))))
+
+      case "login":
+      value.match(/^[a-zA-Z0-9-_]{3,20}$/g)?res('Не нужно спец.символов, только лаnиница, от 3 до 20 символов'):
+      (value.match(/\s/g)?res('Не нужно пробелов'):res(''))
+
+      case "email":
+      value.match(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i)?res('Только латиница, нужен знак @ и домен'):
+      (value.match(/\s/g)?res('Не нужно пробелов'):res(''))
+
+      case "password":
+      value.match(/^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,}$/)?res('8-40 смиволов, заглавная буква и цифра'):res('')
+
+      case "phone":
+      value.match(/^\+?(\d{1-3})?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$/)?res('10-15 смиволов'):res('')
+      case "message":
+      value.length===0?res('Не должно быть пустым'):res('')
+      default: return
+   }
+
+}

@@ -1,0 +1,22 @@
+// import Handlebars from 'handlebars'
+import Block from '/src/modules/block'
+import { template } from './template'
+import './style.scss'
+
+class Input extends Block {
+    constructor(props) {
+
+        super(props, 'div')
+    }
+    render() {
+        return this.compile(template, this.props)
+    }
+}
+
+export default Input
+// Handlebars.registerPartial('buttonComponent', tpl)
+
+// export default (props:object = {}):string => {
+//     console.log("inButton")
+//     return Handlebars.compile(tpl)({props})
+// }

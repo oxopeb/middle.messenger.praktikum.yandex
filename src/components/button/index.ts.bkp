@@ -1,0 +1,23 @@
+
+import Block from '/src/modules/block'
+import { template } from './template'
+import './style.scss'
+
+type ButtonProps = {
+    name:string
+    title:string
+    link:string
+    classes:string
+    settings:object
+    events?:object
+  }
+
+export class Button extends Block {
+    constructor({name,title,link,classes,settings,events}:ButtonProps) {
+
+        super({name,title,link,classes,settings,events}, 'div')
+    }
+    render() :string{
+        return this.compile(template, this.props)
+    }
+}

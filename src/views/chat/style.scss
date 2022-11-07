@@ -1,171 +1,250 @@
+#main > .basic {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 100vh;
+}
 .chat_container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-  background-color: lightgrey;
-  /* Левая часть окна */
-  .left-block {
-    position: absolute;
-    width: 310px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    box-sizing: border-box;
+    width: 100%;
     height: 100%;
     left: 0px;
     top: 0px;
-    clip: auto;
-    background-color: #fff;
-    .userchat_container {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      padding: 0px;
-      gap: 15px;
-      position: absolute;
-      width: 288px;
-      height: 739px;
-      left: 12px;
-      top: 11px;
-      overflow: hidden;
+    overflow: hidden;
+    background: #ffffff;
+    box-sizing: border-box;
 
-      .top_block {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0px;
-        gap: 156px;
-        width: 286px;
-        height: 60px;
-        flex: none;
-        order: 0;
-        flex-grow: 0;
-        .logo {
-          width: 60px;
-          height: 60px;
-          flex: none;
-          order: 0;
-          flex-grow: 0;
-          background-position: center;
-          background-size: cover;
-          background-color: aquamarine;
-        }
-        .profile {
-          width: 200px;
-          height: 15px;
-          font-family: "Montserrat";
-          font-style: normal;
-          font-weight: 400;
-          font-size: 16px;
-          line-height: 15px;
-          text-align: right;
-          letter-spacing: -0.015em;
-          text-decoration-line: underline;
-          text-transform: uppercase;
-          color: rgba(58, 58, 58, 0.33);
-          display: flex;
-        }
-      }
-      .search_block {
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        width: 286px;
-        height: 29px;
-        background: #f2f1f1;
-        flex: none;
-        order: 1;
-        flex-grow: 0;
-        input {
-          width: 95%;
-          text-align: center;
-          border: none;
-        }
-      }
-      .userchats_block {
+    /* Левая часть окна */
+    .left_block {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         padding: 0px;
-        gap: 10px;
-        width: 286px;
-        height: 647px;
+        width: 25%;
+        height: 100%;
         flex: none;
-        order: 2;
-        flex-grow: 0; 
-        overflow-y: scroll;
-        padding-right: 17px; 
-        box-sizing: content-box; 
-        .userchat {
-        padding-right: 17px;
-          width: 100%;
-          height: 60px;
-          border-width: 0px 0px 1px 1px;
-          border-style: solid;
-          border-color: rgba(24, 160, 251, 0.3);
-          flex: none;
-          order: 0;
-          flex-grow: 0;
-          position: relative;
-          .userchat_avatar {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            left: 0px;
-            bottom: 0px;
-            background: #eee2e2;
-          }
-          .userchat_content {
-            .userchat_content__username {
-              position: absolute;
-              height: 15px;
-              left: 74px;
-              top: 2px;
-              font-style: normal;
-              font-weight: 700;
-              font-size: 10px;
-              line-height: 15px;
-              letter-spacing: -0.015em;
-              color: #000000;
-              .userchat_content_msg {
-                display: block;
-                font-weight: 300;
-              }
-            }
-            .userchat_content__time {
-              position: absolute;
-              width: 22px;
-              height: 15px;
-              right: 4px;
-              top: 4px;
+        order: 0;
+        align-self: stretch;
+        flex-grow: 0;
+        .userchat_container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0px;
+            gap: 15px;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            flex: none;
+            order: 0;
+            flex-grow: 1;
 
-              font-family: "Montserrat";
-              font-style: normal;
-              font-weight: 400;
-              font-size: 10px;
-              line-height: 15px;
-              letter-spacing: -0.015em;
-              color: rgba(0, 0, 0, 0.3);
+            .top_block {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px;
+                gap: 156px;
+                width: 100%;
+                height: 53px;
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+                .logo {
+                    width: 33px;
+                    height: 33px;
+                    flex: none;
+                    order: 0;
+                    flex-grow: 0;
+                    background-position: center;
+                    background-size: cover;
+                    background-color: aquamarine;
+                }
+                .profile {
+                    width: 87px;
+                    height: 15px;
+                    flex: none;
+                    order: 1;
+                    flex-grow: 0;
+                }
             }
-            .userchat_content__count {
-              position: absolute;
-              width: 20px;
-              height: 20px;
-              right: 5px;
-              bottom: 12px;
-              font-size: 13px;
-              line-height: 20px;
-              text-align: center;
-              color: #fff;
-              background: #18a0fb;
+            .search_block {
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: 10px;
+                gap: 10px;
+                width: 100%;
+                height: 29px;
+                background: #f2f1f1;
+                flex: none;
+                order: 1;
+                flex-grow: 0;
+                input {
+                    width: 95%;
+                    text-align: center;
+                    border: none;
+                }
             }
-          }
+            .userchats_block {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0px;
+                gap: 10px;
+                width: 100%;
+                height: 90%;
+                padding-right: 17px;
+                box-sizing: content-box;
+                overflow: hidden scroll;
+                flex: none;
+                order: 2;
+                flex-grow: 1;
+            }
         }
-      }
     }
-  }
 
-  /* Правая часть окна */
+    /* Правая часть окна */
+
+    .right_block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 15px 20px;
+        width: 70%;
+        flex: none;
+        order: 1;
+        align-self: stretch;
+        flex-grow: 1;
+        .rb_header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px;
+            width: 100%;
+            height: 50px;
+            border-bottom: 1px solid #eaeaea;
+            flex: none;
+            order: 0;
+            align-self: stretch;
+            flex-grow: 0;
+            .rb_header_buddy {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 0px;
+                gap: 10px;
+                width: 237px;
+                height: 34.95px;
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+            }
+            .rb_header_dots {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 0px 5px 0px 0px;
+                gap: 3px;
+                width: 8px;
+                height: 15.25px;
+                flex: none;
+                order: 1;
+                flex-grow: 0;
+            }
+        }
+        .rb_body {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px;
+            gap: 25px;
+            background: rgba(228, 237, 253, 0.3);
+            flex: none;
+            order: 0;
+            align-self: stretch;
+            flex-grow: 1;
+        }
+        .rb_footer {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 15px 0;
+            gap: 10px;
+            flex: none;
+            order: 1;
+            align-self: stretch;
+            flex-grow: 0;
+            .rb_footer_pin {
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                align-items: center;
+                padding: 0px;
+                width: 40px;
+                height: 40px;
+                flex: none;
+                order: 0;
+                flex-grow: 0;
+            }
+            .rb_footer_input {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                padding: 6px 10px;
+                gap: 10px;
+                height: 35px;
+                flex: none;
+                order: 1;
+                align-self: stretch;
+                flex-grow: 1;
+                .title {
+                    display: none;
+                }
+                .basic,
+                .input_block,
+                input {
+                    width: 100%;
+                    vertical-align: top;
+                }
+            }
+            .rb_footer_send {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 0px;
+                width: 60px;
+                height: 40px;
+                background: #18a0fb;
+                flex: none;
+                order: 2;
+                align-self: stretch;
+                flex-grow: 0;
+                span {
+                    width: 38px;
+                    height: 15px;
+                    font-family: "Montserrat";
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 15px;
+                    line-height: 15px;
+                    text-align: center;
+                    color: #ffffff;
+                    flex: none;
+                    order: 0;
+                    flex-grow: 0;
+                }
+            }
+        }
+    }
 }
