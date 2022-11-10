@@ -1,17 +1,23 @@
-
-{   
-    "include": ["src/**/*"],
+{
     "compilerOptions": {
-    "outDir": "dist",
-    "target": "es2016",
-    "declaration": false,
-    "module": "CommonJS",
-    "strictNullChecks": false,
-    "sourceMap": true,
-    "noImplicitAny": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "removeComments": true,
-    "strict": true  
-    }
-} 
+        "target": "ES2016",
+        "module": "commonjs",
+        "allowJs": true,
+        "sourceMap": true,
+        "outDir": "./dist",
+        "strict": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
+    },
+    "exclude": [
+        "node_modules",
+        "server.js",
+        "dist",
+    ]
+}

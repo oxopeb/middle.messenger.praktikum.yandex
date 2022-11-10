@@ -1,19 +1,16 @@
-const express = require('express')
-const path = require('path')
+import path from 'path'
+import express from 'express'
 
 const app = express()
 const PORT = process.env.PORT || 3000
+const root = path.resolve('./');
 
-app.use(express.static(path.join(__dirname, 'dist')))
+app.use(express.static(path.join(root, 'dist')))
 
-app.use('*', (req,res) => {
-    res.sendFile(path.join(__dirname, 'dist/index.html'))
+app.use('*', (req, res) => {
+    res.sendFile(path.join(root, 'dist/index.html'))
 })
 
-app.listen(PORT, function() {
-    console.log('works')
-})
-
-// app.get('/', (req, res) => {
-//     res.send(path.join(__dirname, 'dist/index.html'))
-//   })
+app.listen(PORT, () => { 
+    console.log(`http://localhost:${PORT}`)
+});
