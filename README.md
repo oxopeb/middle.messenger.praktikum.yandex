@@ -4,6 +4,10 @@
 ---
 
 Chat application
+
+**CHATIZ.RU**
+(mirror of NETLIFY)
+
 Application Chatus is intended to provide connection between people.
 ## Description
 
