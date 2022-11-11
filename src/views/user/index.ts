@@ -5,7 +5,7 @@ import { default as InputBlock } from '../../components/inputBlock'
 import { validateInputForm } from '../../utils/validate'
 import { IProps } from '../../modules/block/'
 import { template } from './template'
-import './style.css'
+import './style.scss'
 
 export type IInputsObject = {
     "login"?: HTMLInputElement,

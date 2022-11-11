@@ -26,9 +26,11 @@ https://www.figma.com/file/NTjyUDsZBdhUJWAfTwdU8z/Practicum---Sprint-1?node-id=0
 
 Краткий список команд
 
-- `npm dev` — starting of dev version,
-- `npm start` — building satble version & starting of expressjs,
+- `npm run dev` — starting of dev version,
+- `npm run start` — building satble version & starting of expressjs,
 - `npm run build` — building satble version
+- `npm run lint` — execute linter
+- `npm run slint` — execute stylelint
 
 ## **Use examples**
 
