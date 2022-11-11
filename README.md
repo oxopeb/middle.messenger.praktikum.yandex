@@ -6,7 +6,7 @@
 Chat application
 
 **CHATIZ.RU**
-(mirror of NETLIFY)
+(mirror domain of NETLIFY)
 
 Application Chatus is intended to provide connection between people.
 ## Description
