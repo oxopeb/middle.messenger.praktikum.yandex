@@ -1,7 +1,7 @@
-import { default as Block } from '/src/modules/block'
-import { default as Button } from "/src/components/button"
-import { template } from './template'
+import { default as Block } from '../../modules/block'
+import { default as Button } from '../../components/button'
 import { IProps } from '../../modules/block'
+import { template } from './template'
 
 class Page400 extends Block {
     constructor(props:IProps, tagName = 'div') {
@@ -26,6 +26,5 @@ export default () => {
             })
     }
 
-    const page:HTMLElement = new Page400(props)
-    return page
+    return new Page400(props)
 }

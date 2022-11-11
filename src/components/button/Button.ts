@@ -8,7 +8,7 @@ export class Button extends Block {
 
         super(props, tagname)
     }
-    render():string{
+    render(){
         return this.compile(template, this.props)
     }
 }

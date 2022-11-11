@@ -1,7 +1,6 @@
 import { EventBus } from "../event-bus"
 import { v4 as makeUUID } from "uuid"
 import { compile as templateCompile } from '../../utils/templator'
-import { TemplateDelegate } from "handlebars"
 
 interface IEventBusList {
     (): EventBus;
@@ -50,7 +49,7 @@ export default class Block {
     protected _meta: { tagName: string; props: IProps }
     protected eventBus: IEventBusList;
     protected _id?: string
-    private _className: string
+    private _className?: string
     public props: IProps
     public children: IChildren<Block>
 
@@ -113,7 +112,7 @@ export default class Block {
     private _createResources() {
         const { tagName } = this._meta
         this._element = this._createDocumentElement(tagName)
-        this._element.classList.add(this._className)
+        if (this._className) { this._element.classList.add(this._className) }
     }
 
     init() {
@@ -160,13 +159,15 @@ export default class Block {
     _render() {
         const block = this.render()
         this._element.innerHTML = ''
-        if (block) this._element.appendChild(block)
+        this._element.appendChild(block)
+        this._removeEvents()
         this._addEvents()
     }
 
     // Переопределяется пользователем. Необходимо вернуть разметку
-    render(): HTMLElement {
-        return this._createDocumentElement('div')
+    render() {
+        return this.compile('', this.props)
+        //return this._createDocumentElement('div')
     }
 
     getContent() {
@@ -176,12 +177,22 @@ export default class Block {
     private _makePropsProxy<T extends IProps>(props: T) {
         return new Proxy(props, {
             get(target: T, prop: string): unknown {
-                    const value = target[prop]
-                    return (typeof value === 'function') ? value.bind(target) : value
+                const value = target[prop]
+                return (typeof value === 'function') ? value.bind(target) : value
             },
             set(target: T, prop: string, value: unknown): boolean {
-                    target[prop] = value
-                    return true;
+                // target[prop] = value
+                // return true;
+                if (prop.indexOf('_') === 0) {
+                    throw new Error('Access denied');
+                } else {
+                    if (target[prop] !== value) {
+                        // target[prop] = value;
+                        //this._propsChanged = true;
+                        return Reflect.set(target, prop, value);
+                    }
+                }
+                return true;
 
             },
             deleteProperty(target: T, prop: string): boolean {
@@ -195,7 +206,7 @@ export default class Block {
         });
     }
 
-    compile(template: TemplateDelegate, props: IProps) {
+    compile(template: string, props: IProps) {
         const propsAndStubs: IProps = { ...props }
         Object.entries(this.children).forEach(([key, child]) => {
             propsAndStubs[key] = `<div data-id="${child._id}"></div>`
@@ -226,7 +237,7 @@ export default class Block {
         }
 
         Object.entries(events).forEach(([eventName, arrayOrHandler]) => {
-            [arrayOrHandler].flat().forEach((eventHandler) => {
+            [arrayOrHandler].flat().forEach((eventHandler: EventListener) => {
                 if (typeof eventHandler === 'function') {
                     this._element.addEventListener(eventName, eventHandler)
                 }
@@ -235,13 +246,13 @@ export default class Block {
     }
 
     private _removeEvents() {
-        const { events } = this.props.events
+        const { events } = this.props
 
         if (!events || !this._element) {
             return
         }
         Object.entries(events).forEach(([eventName, arrayOrHandler]) => {
-            [arrayOrHandler].flat().forEach((eventHandler) => {
+            [arrayOrHandler].forEach((eventHandler) => {
                 if (typeof eventHandler === 'function') {
                     this._element.removeEventListener(eventName, eventHandler)
                 }

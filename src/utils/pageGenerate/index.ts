@@ -6,12 +6,12 @@ import serverError from '../../views/500'
 import base from '../../views/base'
 import chat from '../../views/chat'
 import user from '../../views/user'
-import Block from '../../modules/block/Block'
+import { default as Block } from '../../modules/block/'
 
 
 
 export function generatePage(pageName: string): Block {
-    let result: string | Block = ''
+    let result: unknown
     switch (pageName) {
         case 'signin':
             result = signinPage()
@@ -36,7 +36,7 @@ export function generatePage(pageName: string): Block {
             break
         default: result = base()
     }
-    return result
+    return result as Block
 
 }
 

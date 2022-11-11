@@ -6,11 +6,16 @@ import { validateInputForm } from '../../utils/validate'
 import { IProps } from '../../modules/block/'
 import { template } from './template'
 
+
+export type IInputsObject = {
+    "login"?: HTMLInputElement,
+    "password"?: HTMLInputElement,
+}
 class SignIn extends Block {
     constructor(props:IProps, tagName = 'div') {
         super(props, tagName )
     }
-    render():string {
+    render(){
         return this.compile(template, this.props);
 
     } 
@@ -45,10 +50,11 @@ export default () => {
                 class: 'button',
                 settings: { withInternalID: true },
                 events: {
-                    click: () => {
-                        const inputs = {
-                            "login": document.querySelector("input[name='login']"),
-                            "password": document.querySelector("input[name='password']")
+                    click: (event: Event) => {
+                        event.preventDefault()
+                        const inputs:IInputsObject  = {
+                            "login": document.querySelector("input[name='login']") as HTMLInputElement,
+                            "password": document.querySelector("input[name='password']") as HTMLInputElement
                         }
                         validateInputForm(inputs)
                     },
@@ -63,6 +69,5 @@ export default () => {
         })
     }
 
-    const page = new SignIn(props)
-    return page
+    return new SignIn(props)
 }

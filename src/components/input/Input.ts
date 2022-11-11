@@ -4,26 +4,32 @@ import { validateInputBlock } from '../../utils/validate'
 
 export class Input extends Block {
 
-    constructor(props:IProps, tagName='input') {
+    constructor(props: IProps, tagName = 'input') {
 
         props.classes = "input_block"
         props.events = {
             focus: event => {
-                const target:HTMLElement = event.target
-                validateInputBlock(target)
+                const target = event.target
+                validateInputBlock(target as HTMLInputElement)
             },
             blur: event => {
-                const target:HTMLElement = event.target
-                validateInputBlock(target)
+                const target = event.target
+                validateInputBlock(target as HTMLInputElement)
             }
         }
         super(props, tagName)
 
     }
-    render():void {
-        this.element.type = "text"
-        this.element.name = this.element.id = this.props.name
-        return false
+    render() {
+        //this.setProps({ type: "text" })
+        //this.element.type as HTMLInputElement = "text"
+        const inputElement = this.element as HTMLInputElement
+        inputElement.type = "text"
+        if (this.props.name) {
+            inputElement.name = inputElement.id = this.props.name
+        }
+        
+        return this.compile('', this.props)
     }
 }
 

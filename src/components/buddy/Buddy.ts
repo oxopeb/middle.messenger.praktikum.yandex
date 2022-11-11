@@ -8,7 +8,7 @@ export class Buddy extends Block {
         props.classes="userchat"
         super(props, tagName)
     }
-    render ():string {
+    render () {
         return this.compile(template, this.props)
     }
 }

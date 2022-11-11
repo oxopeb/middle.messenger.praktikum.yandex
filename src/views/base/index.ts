@@ -1,15 +1,15 @@
 
-import { default as Block } from '/src/modules/block'
-import { default as Button } from "/src/components/button"
-import { template } from './template'
+import { default as Block } from '../../modules/block'
 import { IProps } from '../../modules/block'
+import { default as Button } from '../../components/button'
+import { template } from './template'
 
 class Base extends Block {
   constructor(props:IProps, tagName = 'main') {
     super(props, tagName)
   }
-  render():string {
-    return this.compile(template, this.props);
+  render() {
+    return this.compile(template, this.props)
 
   }
 }

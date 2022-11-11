@@ -1,12 +1,22 @@
-import { default as Block } from '/src/modules/block'
-import { default as Button } from '/src/components/button'
-import { default as Input }from '/src/components/input'
-import { default as Buddy } from '/src/components/buddy'
-import { validateInputForm } from '/src/utils/validate'
+import { default as Block } from '../../modules/block'
+import { IProps } from '../../modules/block'
+import { default as Button } from '../../components/button'
+import { default as Input }from '../../components/input'
+import { default as Buddy } from '../../components/buddy'
+import { validateInputForm } from '../../utils/validate'
 import { template } from './template'
 import './style.scss'
 
-
+export type IInputsObject = {
+    "login"?: HTMLInputElement,
+    "password"?: HTMLInputElement,
+    "password_repeat"?: HTMLInputElement,
+    "phone"?: HTMLInputElement,
+    "email"?: HTMLInputElement,
+    "first_name"?: HTMLInputElement,
+    "second_name"?: HTMLInputElement,
+    "message"?: HTMLInputElement
+ }
 class Chat extends Block {
     constructor(props:IProps, tagName = 'div') {
 
@@ -112,8 +122,8 @@ export default () => {
             settings: { withInternalID: true },
             events: {
                 click: () => {
-                    const inputs = {
-                        "message": document.querySelector("input[name='message']")
+                    const inputs: IInputsObject= {
+                        "message": document.querySelector("input[name='message']") as HTMLInputElement
                     }
                     validateInputForm(inputs)
                 },
@@ -121,6 +131,5 @@ export default () => {
         })
     }
 
-    const page = new Chat(chatProps)
-    return page
+    return new Chat(chatProps)
 }

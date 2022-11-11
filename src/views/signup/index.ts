@@ -1,14 +1,22 @@
-import { default as Block } from '/src/modules/block'
-import { default as Button } from '/src/components/button'
-import { default as Input } from '/src/components/input'
-import { default as InputBlock } from '/src/components/inputBlock'
-import { validateInputForm } from '/src/utils/validate'
+import { default as Block, IProps } from '../../modules/block'
+import { default as Button } from '../../components/button'
+import { default as Input } from '../../components/input'
+import { default as InputBlock } from '../../components/inputBlock'
+import { validateInputForm } from '../../utils/validate'
 import { template } from './template'
-import './style.scss'
 
-
+export type IInputsObject = {
+    "login"?: HTMLInputElement,
+    "password"?: HTMLInputElement,
+    "password_repeat"?: HTMLInputElement,
+    "phone"?: HTMLInputElement,
+    "email"?: HTMLInputElement,
+    "first_name"?: HTMLInputElement,
+    "second_name"?: HTMLInputElement,
+    "message"?: HTMLInputElement
+}
 class SignUp extends Block {
-    constructor(props:IProps,tagName = 'div') {
+    constructor(props: IProps, tagName = 'div') {
         super(props, tagName)
     }
     render() {
@@ -18,7 +26,7 @@ class SignUp extends Block {
 }
 
 export default () => {
-    const props:IProps = {
+    const props: IProps = {
         inputLogin: new InputBlock({
             title: 'Login',
             settings: { withInternalID: true },
@@ -97,14 +105,14 @@ export default () => {
             settings: { withInternalID: true },
             events: {
                 click: () => {
-                    const inputs = {
-                    "login":document.querySelector("input[name='login']"),
-                    "password":document.querySelector("input[name='password']"),
-                    "password_repeat":document.querySelector("input[name='password_repeat']"),
-                    "phone":document.querySelector("input[name='phone']"),
-                    "email":document.querySelector("input[name='email']"),
-                    "first_name":document.querySelector("input[name='first_name']"),
-                    "second_name":document.querySelector("input[name='second_name']")
+                    const inputs: IInputsObject = {
+                        "login": document.querySelector("input[name='login']") as HTMLInputElement,
+                        "password": document.querySelector("input[name='password']") as HTMLInputElement,
+                        "password_repeat": document.querySelector("input[name='password_repeat']") as HTMLInputElement,
+                        "phone": document.querySelector("input[name='phone']") as HTMLInputElement,
+                        "email": document.querySelector("input[name='email']") as HTMLInputElement,
+                        "first_name": document.querySelector("input[name='first_name']") as HTMLInputElement,
+                        "second_name": document.querySelector("input[name='second_name']") as HTMLInputElement
                     }
                     validateInputForm(inputs)
                 },
@@ -112,6 +120,5 @@ export default () => {
         })
     }
 
-    const page = new SignUp(props)
-    return page
+    return new SignUp(props)
 }

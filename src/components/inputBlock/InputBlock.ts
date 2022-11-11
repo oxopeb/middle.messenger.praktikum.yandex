@@ -1,4 +1,4 @@
-import { default as Block } from '/src/modules/block'
+import { default as Block } from '../../modules/block'
 import { IProps } from '../../modules/block/'
 import { template } from './template'
 import { validateInput } from '../../utils/validate'
@@ -9,17 +9,17 @@ export class InputBlock extends Block {
 
     constructor(props:IProps, tagname='div') {
 
-        props.classes = "input_block"
+        props.classes = "input-block"
         props.events = {
             focus: event => {
-                validateInput(event)},
+                validateInput(event.target as HTMLInputElement)},
             blur: event => {
-                validateInput(event)}
+                validateInput(event.target as HTMLInputElement)}
         }
         super(props, tagname)
         
     }
-    render():string {
+    render() {
         return this.compile(template, this.props)
     }
 }

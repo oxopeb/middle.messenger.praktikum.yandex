@@ -7,19 +7,26 @@ import { IProps } from '../../modules/block/'
 import { template } from './template'
 import './style.css'
 
-interface IInputsObject {
-    [string:HTMLInputElement]
+export type IInputsObject = {
+    "login"?: HTMLInputElement,
+    "password"?: HTMLInputElement,
+    "password_repeat"?: HTMLInputElement,
+    "phone"?: HTMLInputElement,
+    "email"?: HTMLInputElement,
+    "first_name"?: HTMLInputElement,
+    "second_name"?: HTMLInputElement,
+    "message"?: HTMLInputElement
 }
 
 
 class UserPage extends Block {
-    constructor(props: IProps) {
-        super(props, 'div')
+    constructor(props: IProps, tagName = 'div') {
+        super(props, tagName)
 
 
     }
-    render():string {
-        return this.compile(template, this.props);
+    render() {
+        return this.compile(template, this.props)
     }
 }
 
@@ -105,13 +112,13 @@ export default () => {
                 click: (event: Event) => {
                     event.preventDefault()
                     const inputs: IInputsObject = {
-                        "login": document.querySelector("input[name='login']"),
-                        "password": document.querySelector("input[name='password']"),
-                        "password_repeat": document.querySelector("input[name='password_repeat']"),
-                        "phone": document.querySelector("input[name='phone']"),
-                        "email": document.querySelector("input[name='email']"),
-                        "first_name": document.querySelector("input[name='first_name']"),
-                        "second_name": document.querySelector("input[name='second_name']")
+                        "login": document.querySelector("input[name='login']") as HTMLInputElement,
+                        "password": document.querySelector("input[name='password']") as HTMLInputElement,
+                        "password_repeat": document.querySelector("input[name='password_repeat']") as HTMLInputElement,
+                        "phone": document.querySelector("input[name='phone']") as HTMLInputElement,
+                        "email": document.querySelector("input[name='email']") as HTMLInputElement,
+                        "first_name": document.querySelector("input[name='first_name']") as HTMLInputElement,
+                        "second_name": document.querySelector("input[name='second_name']") as HTMLInputElement
                     }
                     validateInputForm(inputs)
                 },
@@ -119,6 +126,5 @@ export default () => {
         })
     }
 
-    const page = new UserPage(props)
-    return page
+    return new UserPage(props)
 }

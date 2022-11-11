@@ -13,9 +13,9 @@ function queryStringify(data: IRequest): string {
     }, '?')
 }
 
-interface IHeaders {
-    [k: string]: string
-}
+// interface IHeaders {
+//     [k: string]: string
+// }
 
 interface IRequest {
     [k: string]: string
@@ -23,25 +23,25 @@ interface IRequest {
 
 type Options = {
     method: METHOD
-    data?: IRequest
-    headers?: IHeaders
+    data?: any
+    headers?: any
     timeout?: number
 }
 
 export class HTTPTransport {
-    get = (url: string, options: Options = {}): Promise<XMLHttpRequest> => {
+    get (url: string, options: Options = { method: METHOD.GET }): Promise<XMLHttpRequest> {
         return this.request(`${url}${queryStringify(options.data)}`, { ...options, method: METHOD.GET }, options.timeout)
-    };
-    put = (url: string, options: Options = {}): Promise<XMLHttpRequest> => {
+    }
+    put (url: string, options: Options = { method: METHOD.PUT }): Promise<XMLHttpRequest> {
         return this.request(url, { ...options, method: METHOD.PUT }, options.timeout)
-    };
-    post = (url: string, options: Options = {}): Promise<XMLHttpRequest> => {
+    }
+    post (url: string, options: Options = { method: METHOD.POST }): Promise<XMLHttpRequest> {
         return this.request(url, { ...options, method: METHOD.POST }, options.timeout)
-    };
-    delete = (url: string, options: Options = {}): Promise<XMLHttpRequest> => {
+    }
+    delete (url: string, options: Options = { method: METHOD.DELETE }): Promise<XMLHttpRequest> {
         return this.request(url, { ...options, method: METHOD.DELETE }, options.timeout)
-    };
-    request = (url: string, options: Options, timeout = 5000): Promise<XMLHttpRequest> => {
+    }
+    request (url: string, options: Options, timeout = 5000): Promise<XMLHttpRequest> {
         const { headers = {}, method, data} = options;
         return new Promise(function (resolve, reject) {
         if (!method) {
