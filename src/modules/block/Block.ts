@@ -23,6 +23,7 @@ export interface IProps {
     events?: EventsProp
     classes?: string
     name?: string
+    type?:string
     title?: string
     link?: string
     class?: string

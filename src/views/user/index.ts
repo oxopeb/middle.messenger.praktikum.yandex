@@ -20,7 +20,7 @@ export type IInputsObject = {
 
 
 class UserPage extends Block {
-    constructor(props: IProps, tagName = 'div') {
+    constructor(props: IProps, tagName = 'main') {
         super(props, tagName)
 
 
@@ -34,63 +34,77 @@ export default () => {
     const props: IProps = {
         inputEmail: new InputBlock({
             title: 'Email',
+            name: 'email',
             settings: { withInternalID: true },
             input: new Input({
                 name: 'email',
+                type: 'email',
                 title: 'Email',
                 settings: { withInternalID: true }
             })
         }),
         inputLogin: new InputBlock({
             title: 'Login',
+            name: 'login',
             settings: { withInternalID: true },
             input: new Input({
                 name: 'login',
+                type: 'text',
                 title: 'Login',
                 settings: { withInternalID: true }
             })
         }),
         inputFirstName: new InputBlock({
             title: 'Name',
+            name: 'first_name',
             settings: { withInternalID: true },
             input: new Input({
                 name: 'first_name',
+                type: 'text',
                 title: 'Name',
                 settings: { withInternalID: true }
             })
         }),
         inputSecondName: new InputBlock({
             title: 'Surname',
+            name: 'second_name',
             settings: { withInternalID: true },
             input: new Input({
                 name: 'second_name',
+                type: 'text',
                 title: 'Surname',
                 settings: { withInternalID: true }
             })
         }),
         inputPhone: new InputBlock({
             title: 'Phone',
+            name: 'phone',
             settings: { withInternalID: true },
             input: new Input({
                 name: 'phone',
+                type: 'text',
                 title: 'Phone',
                 settings: { withInternalID: true }
             })
         }),
         inputPassword: new InputBlock({
             title: 'Password',
+            name: 'password',
             settings: { withInternalID: true },
             input: new Input({
                 name: 'password',
+                type: 'password',
                 title: 'Password',
                 settings: { withInternalID: true }
             }),
         }),
         inputPasswordRepeat: new InputBlock({
             title: 'Password (repeat)',
+            name: 'password_repeat',
             settings: { withInternalID: true },
             input: new Input({
                 name: 'password_repeat',
+                type: 'password',
                 title: 'Password',
                 settings: { withInternalID: true }
             }),
@@ -99,13 +113,20 @@ export default () => {
             name: 'chat',
             title: 'Back to chat',
             link: '/?page=chat',
+            type: 'button',
             class: 'link',
-            settings: { withInternalID: true }
+            settings: { withInternalID: true },
+            events: {
+                click: () => {
+                    window.location.href = '/?page=chat'
+                },
+            }
         }),
         buttonSave: new Button({
             name: 'save',
             title: 'Save',
             link: '/?page=user',
+            type: 'submit',
             class: 'button',
             settings: { withInternalID: true },
             events: {

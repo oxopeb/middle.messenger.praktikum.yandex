@@ -1,5 +1,4 @@
 export function validate(value: string, element: string): string {
-
    switch (element) {
       case "first_name":
       case "second_name":
@@ -20,6 +19,7 @@ export function validate(value: string, element: string): string {
       case "password_repeat":
          return value.length === 0 ? 'Не должно быть пустым' : (!value.match(/^.*(?=.{8,40})(?=.*[A-Z])(?=.*\d).*$/) ?
             '8-40 смиволов, заглавная буква и цифра' : 'ok')
+
       case "phone":
          return !value.match(/^\+?(\d{1-3})?[- .]?\(?(?:\d{2,3})\)?[- .]?\d\d\d[- .]?\d\d\d\d$/) ? '10-15 смиволов' : 'ok'
          break
@@ -29,21 +29,25 @@ export function validate(value: string, element: string): string {
    }
 }
 
+
 export function validateInput(element: HTMLInputElement): string {
    const name: string = element.name
    const value: string = element.value
    return validate(value, name)
 }
 
+
 export function validateInputBlock(HTMLelement: HTMLInputElement): void {
    const result = validateInput(HTMLelement)
-   if (result) {
+   if (result !== 'ok') {
       console.log(HTMLelement.name, result)
       HTMLelement.title = result
+      document.getElementById(HTMLelement.name)!.querySelector('span')!.textContent = `  (${result})`
       HTMLelement.classList.add('error')
    }
    else {
       HTMLelement.title = HTMLelement.name
+      document.getElementById(HTMLelement.name)!.querySelector('span')!.textContent = ''
       HTMLelement.classList.remove('error')
    }
 }
@@ -62,17 +66,23 @@ export function validateInputForm(inputs: IInputsObject): void {
    let totalInfo = ''
    Object.entries(inputs).forEach(([key, value]) => {
       const HTMLelement: HTMLInputElement = value
-      const result: string = validateInput(HTMLelement)
-      if (result) {
-         console.log(key, result)
-         HTMLelement.title = result
-         HTMLelement.classList.add('error')
-      }
-      else {
-         HTMLelement.title = key
-         HTMLelement.classList.remove('error')
-         totalInfo += `{ ${key}=${HTMLelement.value}  }`
-      }
-   })
-   console.log("Форма:", totalInfo)
+      let result: string = validateInput(HTMLelement)
+      if (HTMLelement.name === 'password_repeat'){
+      const passInput = document.querySelector("input[name='password']") as HTMLInputElement
+      if (HTMLelement.value !== passInput.value) result = 'Пароли не сходятся'
+   }
+      if (result !== 'ok') {
+      console.log(key, result)
+      HTMLelement.title = result
+      document.getElementById(HTMLelement.name)!.querySelector('span')!.textContent = result === 'ok' ? '' : `  (${result})`
+      HTMLelement.classList.add('error')
+   }
+   else {
+      HTMLelement.title = key
+      HTMLelement.classList.remove('error')
+      document.getElementById(HTMLelement.name)!.querySelector('span')!.textContent = ''
+      totalInfo += `{ ${key}=${HTMLelement.value}  }`
+   }
+})
+console.log("Форма:", totalInfo)
 } 

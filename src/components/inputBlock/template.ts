@@ -1,4 +1,4 @@
 export const template = `
-    <div class="title">{{title}}</div>
+    <div class="title" id="{{name}}">{{title}}<span></span></div>
     {{{input}}}
 `

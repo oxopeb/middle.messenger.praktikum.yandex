@@ -13,9 +13,6 @@ function queryStringify(data: IRequest): string {
     }, '?')
 }
 
-// interface IHeaders {
-//     [k: string]: string
-// }
 
 interface IRequest {
     [k: string]: string

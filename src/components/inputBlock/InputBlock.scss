@@ -22,5 +22,8 @@
     flex: none;
     order: 0;
     flex-grow: 0;
+    span {
+      color: var(--red-opacity50-color);
+    }
   }
 }

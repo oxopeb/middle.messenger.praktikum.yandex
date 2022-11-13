@@ -6,6 +6,7 @@ import { default as Buddy } from '../../components/buddy'
 import { validateInputForm } from '../../utils/validate'
 import { template } from './template'
 import './style.scss'
+import InputBlock from '../../components/inputBlock'
 
 export type IInputsObject = {
     "login"?: HTMLInputElement,
@@ -18,7 +19,7 @@ export type IInputsObject = {
     "message"?: HTMLInputElement
  }
 class Chat extends Block {
-    constructor(props:IProps, tagName = 'div') {
+    constructor(props:IProps, tagName = 'main') {
 
         super(props, tagName )
     }
@@ -102,22 +103,35 @@ export default () => {
             msgCount: '3',
             settings: { withInternalID: true }
         }), 
-        inputMessage: new Input({
+        inputMessage: new InputBlock({
+            title: ' ',
             name: 'message',
-            title: 'Message',
-            settings: { withInternalID: true }
-        }), 
+            settings: { withInternalID: true },
+            input: new Input({
+                name: 'message',
+                type: 'text',
+                title: 'Message',
+                settings: { withInternalID: true }
+            })
+        }),
         buttonUser: new Button({
             name: 'user',
             title: 'Profile',
             link: '/?page=user',
+            type: 'button',
             class: 'link profile',
-            settings: { withInternalID: true }
+            settings: { withInternalID: true },
+            events: {
+                click: () => {
+                    window.location.href = '/?page=user'
+                },
+            }
         }),      
         buttonSend: new Button({
             name: 'send',
             title: 'Send',
             link: '#',
+            type: 'submit',
             class: 'link send',
             settings: { withInternalID: true },
             events: {

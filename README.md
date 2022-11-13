@@ -1,14 +1,21 @@
-### CHATIZ
+<h1 style="text-align:center"><a href="chatiz.ru">CHAT IZ RU</a> – Official Messenger</h1>
 
-### Modern messenger
+This is the complete source code and the build instructions for the official Chatiz messenger client.
+<marquee direction="left" scrollamount="3" style="color:grey">HELLO &#8226; SALUT &#8226; HALLO &#8226; 你好！&#8226; HOLA &#8226; HEJ &#8226; ZDRAVO &#8226; こんにちは &#8226; CIAO &#8226; SALUTON &#8226; </marquee>
+
 ---
 
-Chat application
+Deployed chat application:
 
-**CHATIZ.RU**
+<a href="chatiz.ru">**CHATIZ.RU**</a>
 (mirror domain of NETLIFY)
 
-Application Chatus is intended to provide connection between people.
+Application Chatiz is intended to provide connection between people.
+</br>
+<img style="width:100%" src="./src/static/readme.png" />
+</br >
+
+---
 ## Description
 
 Messenger **Chatiz** has following pages:

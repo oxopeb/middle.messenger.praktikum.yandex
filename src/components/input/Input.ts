@@ -21,12 +21,10 @@ export class Input extends Block {
 
     }
     render() {
-        //this.setProps({ type: "text" })
-        //this.element.type as HTMLInputElement = "text"
         const inputElement = this.element as HTMLInputElement
-        inputElement.type = "text"
-        if (this.props.name) {
-            inputElement.name = inputElement.id = this.props.name
+        if (this.props.name && this.props.type) {
+            inputElement.name = this.props.name
+            inputElement.type = this.props.type
         }
         
         return this.compile('', this.props)

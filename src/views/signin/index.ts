@@ -12,7 +12,7 @@ export type IInputsObject = {
     "password"?: HTMLInputElement,
 }
 class SignIn extends Block {
-    constructor(props:IProps, tagName = 'div') {
+    constructor(props:IProps, tagName = 'main') {
         super(props, tagName )
     }
     render(){
@@ -26,18 +26,22 @@ export default () => {
     const props:IProps = {
         inputLogin: new InputBlock({
             title: 'Login',
+            name: 'login',
             settings: { withInternalID: true },
             input: new Input({
                 name: 'login',
+                type: 'text',
                 title: 'Login',
                 settings: { withInternalID: true }
             })
         }),
         inputPassword: new InputBlock({
             title: 'Password',
+            name: 'password',
             settings: { withInternalID: true },
             input: new Input({
                 name: 'password',
+                type: 'password',
                 title: 'Password',
                 settings: { withInternalID: true }
             })
@@ -47,11 +51,13 @@ export default () => {
                 name: 'signin_link',
                 title: 'Sign in',
                 link: '#',
+                type: 'submit',
                 class: 'button',
                 settings: { withInternalID: true },
                 events: {
                     click: (event: Event) => {
                         event.preventDefault()
+                        event.stopPropagation()
                         const inputs:IInputsObject  = {
                             "login": document.querySelector("input[name='login']") as HTMLInputElement,
                             "password": document.querySelector("input[name='password']") as HTMLInputElement
@@ -64,8 +70,14 @@ export default () => {
             name: 'signup_link',
             title: 'Sign up',
             link: '/?page=signup',
+            type: 'button',
             class: 'link',
-            settings: { withInternalID: true }
+            settings: { withInternalID: true },
+            events: {
+                click: () => {
+                    window.location.href='/?page=signup'
+                },
+            }
         })
     }
 

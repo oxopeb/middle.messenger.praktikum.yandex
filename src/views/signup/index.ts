@@ -16,7 +16,7 @@ export type IInputsObject = {
     "message"?: HTMLInputElement
 }
 class SignUp extends Block {
-    constructor(props: IProps, tagName = 'div') {
+    constructor(props: IProps, tagName = 'main') {
         super(props, tagName)
     }
     render() {
@@ -29,63 +29,77 @@ export default () => {
     const props: IProps = {
         inputLogin: new InputBlock({
             title: 'Login',
+            name: 'login',
             settings: { withInternalID: true },
             input: new Input({
                 name: 'login',
+                type: 'text',
                 title: 'Login',
                 settings: { withInternalID: true }
             })
         }),
         inputPassword: new InputBlock({
             title: 'Password',
+            name: 'password',
             settings: { withInternalID: true },
             input: new Input({
                 name: 'password',
+                type: 'password',
                 title: 'Password',
                 settings: { withInternalID: true }
             })
         }),
         inputPasswordRepeat: new InputBlock({
             title: 'Password (repeat)',
+            name: 'password_repeat',
             settings: { withInternalID: true },
             input: new Input({
                 name: 'password_repeat',
                 title: 'Password',
+                type: 'password',
                 settings: { withInternalID: true }
             })
         }),
         inputPhone: new InputBlock({
             title: 'Phone',
+            name: 'phone',
             settings: { withInternalID: true },
             input: new Input({
                 name: 'phone',
+                type: 'text',
                 title: 'Phone',
                 settings: { withInternalID: true }
             })
         }),
         inputEmail: new InputBlock({
             title: 'Email',
+            name: 'email',
             settings: { withInternalID: true },
             input: new Input({
                 name: 'email',
+                type: 'email',
                 title: 'Email',
                 settings: { withInternalID: true }
             })
         }),
         inputFirstName: new InputBlock({
             title: 'Name',
+            name: 'first_name',
             settings: { withInternalID: true },
             input: new Input({
                 name: 'first_name',
+                type: 'text',
                 title: 'Name',
                 settings: { withInternalID: true }
             })
         }),
         inputSecondName: new InputBlock({
             title: 'Surname',
+            name: 'second_name',
             settings: { withInternalID: true },
             input: new Input({
                 name: 'second_name',
+                type: 'text',
                 title: 'Surname',
                 settings: { withInternalID: true }
             })
@@ -94,17 +108,26 @@ export default () => {
             name: 'signin',
             title: 'Sign in',
             link: '/?page=signin',
+            type: 'button',
             class: 'link',
-            settings: { withInternalID: true }
+            settings: { withInternalID: true },
+            events: {
+                click: () => {
+                    window.location.href = '/?page=signin'
+                },
+            }
         }),
         buttonSignUp: new Button({
             name: 'signup',
             title: 'Sign up',
             link: '#',
             class: 'button',
+            type: 'submit',
             settings: { withInternalID: true },
             events: {
-                click: () => {
+                click: (event: Event) => {
+                    event.preventDefault()
+                    event.stopPropagation()
                     const inputs: IInputsObject = {
                         "login": document.querySelector("input[name='login']") as HTMLInputElement,
                         "password": document.querySelector("input[name='password']") as HTMLInputElement,
